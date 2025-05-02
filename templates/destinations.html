@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 columns */
+            gap: 20px;
+            justify-items: center; /* Center items horizontally */
+            align-items: center; /* Center items vertically */
+        }
+        .destination-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%; /* Make it fit in the grid */
+            max-width: 250px; /* Optional: limit card width */
+        }
+        .destination-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .destination-card h2 {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .destination-card a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+        .destination-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Explore Our Destinations</h1>
+    <div class="container">
+        {% for destination in destinations %}
+        <div class="destination-card">
+            <img src="/static/images/{{ destination.name | lower }}.jpg" alt="{{ destination.name }} Image" onerror="this.onerror=null;this.src='/static/images/default.jpg';">
+            <h2>{{ destination.name }}</h2>
+            <a href="{{ destination.map }}" target="_blank">View on Map</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

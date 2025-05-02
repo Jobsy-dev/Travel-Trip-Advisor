@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Trip Advisor</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('static/images/background3.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            color: black;
+            padding: 20px;
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            background-color: peachpuff;
+        }
+        nav {
+            background-color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: black;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+        nav a:hover {
+            background-color: peachpuff;
+            color: #0073e6;
+        }
+        section {
+            flex: 1;
+            text-align: center;
+            margin: 20px;
+        }
+        section h2 {
+            color: black;
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #0073e6;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-items: center; /* Center all items */
+            align-items: center;
+            padding: 20px;
+        }
+        .travel-type {
+            width: 500px; /* Adjusted size for alignment */
+           
+            text-align: center;
+            border: 2px solid #ccc;
+            border-radius: 15px;
+            padding: 10px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .travel-type img {
+            width: 100%;
+            height: 200px; /* Adjusted height */
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .travel-type:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            padding: 15px;
+            text-align: center;
+            color: black;
+            background-color: peachpuff;
+            margin-top: auto;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr); /* Two images per row on tablets */
+                gap: 15px;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr; /* One image per row on mobile */
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    Welcome to Travel Trip Advisor
+</header>
+
+<nav>
+    <ul>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/services">Services</a>
+        <a href="/destinations">Destinations</a>
+    </ul>
+</nav>
+
+<section id="travel-types">
+    <h2>Travel Types</h2>
+    <div class="container">
+        <div class="travel-type">
+            <a href="/search?profile=Solo">
+                <img src="{{ url_for('static', filename='images/solo.jpg') }}" alt="Solo Travel">
+                <p>Solo Travel</p>
+            </a>
+        </div>
+        <div class="travel-type">
+            <a href="/search?profile=Friends">
+                <img src="{{ url_for('static', filename='images/friends.jpg') }}" alt="Friends Travel">
+                <p>Friends/College Travel</p>
+            </a>
+        </div>
+        <div class="travel-type">
+            <a href="/search?profile=Family">
+                <img src="{{ url_for('static', filename='images/family.jpg') }}" alt="Family Travel">
+                <p>Family Travel</p>
+            </a>
+        </div>
+        <div class="travel-type">
+            <a href="/search?profile=SeniorCitizen">
+                <img src="{{ url_for('static', filename='images/senior.jpg') }}" alt="Senior Citizen">
+                <p>Senior Citizen</p>
+            </a>
+        </div>
+        <div class="travel-type">
+            <a href="/search?profile=Couple">
+                <img src="{{ url_for('static', filename='images/couple.jpg') }}" alt="Couple Travel">
+                <p>Couple Travel</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Travel Trip Advisor. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

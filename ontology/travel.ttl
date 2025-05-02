@@ -1,0 +1,236 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://www.travel-advisor.org/ontology#> .
+
+# Classes
+:Destination rdf:type rdfs:Class .
+:Activity rdf:type rdfs:Class .
+:Service rdf:type rdfs:Class .
+:HotelBooking rdf:type rdfs:Class ; rdfs:subClassOf :Service .
+:TicketBooking rdf:type rdfs:Class ; rdfs:subClassOf :Service .
+:TravelerCategory rdf:type rdfs:Class .
+
+# Traveler Categories
+:SeniorCitizen rdf:type rdfs:Class ; rdfs:subClassOf :TravelerCategory .
+:Solo rdf:type rdfs:Class ; rdfs:subClassOf :TravelerCategory .
+:Family rdf:type rdfs:Class ; rdfs:subClassOf :TravelerCategory .
+:Couple rdf:type rdfs:Class ; rdfs:subClassOf :TravelerCategory .
+:Friends rdf:type rdfs:Class ; rdfs:subClassOf :TravelerCategory .
+
+# Properties
+:hasActivity rdf:type rdf:Property ; rdfs:domain :Destination ; rdfs:range :Activity .
+:hasAttraction rdf:type rdf:Property ; rdfs:domain :Destination ; rdfs:range xsd:string .
+:hasHotel rdf:type rdf:Property ; rdfs:domain :Destination ; rdfs:range :HotelBooking .
+:includesBreakfast rdf:type rdf:Property ; rdfs:domain :HotelBooking ; rdfs:range xsd:boolean .
+:amount rdf:type rdf:Property ; rdfs:domain :HotelBooking ; rdfs:range xsd:decimal .
+:hasBookingOption rdf:type rdf:Property ; rdfs:domain :Destination ; rdfs:range xsd:string .
+:suitableFor rdf:type rdf:Property ; rdfs:domain :Destination ; rdfs:range :TravelerCategory .
+:hasLocationMap rdf:type rdf:Property ; rdfs:domain :Destination ; rdfs:range xsd:string .
+:hasGoogleReview rdf:type rdf:Property ; rdfs:domain :Destination ; rdfs:range xsd:string .
+
+# Activities
+:Boating rdf:type :Activity .
+:BeachParties rdf:type :Activity .
+:ScubaDiving rdf:type :Activity .
+:Trekking rdf:type :Activity .
+:Paragliding rdf:type :Activity .
+
+#service
+:PersonalizedItineraries rdf:type :Service ;
+    rdfs:label "Personalized Itineraries" ;
+    rdfs:comment "Customized travel plans based on users' preferences and interests." .
+
+
+:HotelReservations rdf:type :Service ;
+    rdfs:label "Hotel Recommendations" ;
+    rdfs:comment "Partnerships with hotels to offer exclusive deals." .
+
+:ActivityTourBookings rdf:type :Service ;
+    rdfs:label "Flight Booking" ;
+    rdfs:comment "Bookings for best flights to travel" .
+
+
+
+# Top 10 Destinations in India
+
+# 1. Goa
+:Goa rdf:type :Destination ;
+    :suitableFor :Solo, :Friends, :Couple ;
+    :hasActivity :BeachParties, :ScubaDiving, :Boating ;
+    :hasAttraction "Baga Beach, Calangute Beach, Basilica of Bom Jesus" ;
+    :hasHotel :GrandGoaResort, :MarriottGoa ;
+    :hasBookingOption "https://www.makemytrip.com/flights" ;
+    :hasLocationMap "https://www.google.com/maps/place/Goa" ;
+    :hasGoogleReview "A perfect destination for beach lovers and party enthusiasts." .
+
+:GrandGoaResort rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 12000 .
+
+:MarriottGoa rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 15000 .
+
+# 2. Jaipur
+:Jaipur rdf:type :Destination ;
+    :suitableFor :Family, :Couple, :SeniorCitizen ;
+    :hasActivity :HeritageWalk, :PalaceTour ;
+    :hasAttraction "Hawa Mahal, Amber Fort, City Palace" ;
+    :hasHotel :TajRambagh, :HiltonJaipur ;
+    :hasBookingOption "https://www.makemytrip.com/flights" ;
+     :hasLocationMap "https://www.google.com/maps/place/Jaipur" ;
+    :hasGoogleReview "A vibrant city showcasing the royal heritage of India." .
+
+:TajRambagh rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 20000 .
+
+:HiltonJaipur rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 18000 .
+
+# 3. Kerala
+:Kerala rdf:type :Destination ;
+    :suitableFor :Couple, :Family, :SeniorCitizen ;
+    :hasActivity :HouseboatRide, :SpiceGardenVisit, :YogaRetreat ;
+    :hasAttraction "Backwaters of Alleppey, Munnar Tea Gardens, Kovalam Beach" ;
+    :hasHotel :LeelaKovalam, :TajKumarakom ;
+    :hasBookingOption "https://www.makemytrip.com/flights" ;
+    :hasLocationMap "https://www.google.com/maps/place/Kerala" ;
+    :hasGoogleReview "A serene escape with breathtaking natural beauty." .
+
+:LeelaKovalam rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 25000 .
+
+:TajKumarakom rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 22000 .
+
+# 4. Agra
+:Agra rdf:type :Destination ;
+    :suitableFor :Family, :Couple, :SeniorCitizen ;
+    :hasActivity :HeritageWalk, :Photography ;
+    :hasAttraction "Taj Mahal, Agra Fort, Fatehpur Sikri" ;
+    :hasHotel :ITCAgra, :TridentAgra ;
+    :hasBookingOption "https://www.makemytrip.com/flights" ;
+   :hasLocationMap "https://www.google.com/maps/place/Agra" ;
+    :hasGoogleReview "The epitome of love and a world wonder." .
+
+:ITCAgra rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 18000 .
+
+:TridentAgra rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 15000 .
+
+# 5. Varanasi
+:Varanasi rdf:type :Destination ;
+    :suitableFor :SeniorCitizen, :Family ;
+    :hasActivity :HeritageWalk, :Photography ;
+    :hasAttraction "Dasaswamedh Ghat, Kashi Vishwanath Temple, Sarnath" ;
+    :hasHotel :TajGanges, :RadissonVaranasi ;
+    :hasBookingOption "https://www.makemytrip.com/flights" ;
+     :hasLocationMap "https://www.google.com/maps/place/Varanasi" ;
+    :hasGoogleReview "A spiritual journey along the holy Ganges." .
+
+:TajGanges rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 15000 .
+
+:RadissonVaranasi rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 12000 .
+
+# 6. Ladakh
+:Ladakh rdf:type :Destination ;
+    :suitableFor :Solo, :Couple, :Friends ;
+    :hasActivity :Trekking, :Photography, :Camping ;
+    :hasAttraction "Pangong Lake, Leh Palace, Nubra Valley" ;
+    :hasHotel :LadakhSarai, :TheGrandDragon ;
+    :hasBookingOption "https://www.makemytrip.com/flights" ;
+    :hasLocationMap "https://www.google.com/maps/place/Ladakh" ;
+    :hasGoogleReview "A mystical land of high passes and serene beauty." .
+
+:LadakhSarai rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 20000 .
+
+:TheGrandDragon rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 22000 .
+
+# 7. Andaman
+:Andaman rdf:type :Destination ;
+    :suitableFor :Family, :Couple ;
+    :hasActivity :ScubaDiving, :Snorkeling, :BeachRelaxation ;
+    :hasAttraction "Radhanagar Beach, Cellular Jail, Ross Island" ;
+    :hasHotel :BarefootResort, :SeaShellPortBlair ;
+    :hasBookingOption "https://www.makemytrip.com/flights" ;
+  :hasLocationMap "https://www.google.com/maps/place/Andaman" ;
+    :hasGoogleReview "An island paradise with crystal-clear waters." .
+
+:BarefootResort rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 18000 .
+
+:SeaShellPortBlair rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 15000 .
+
+# 8. Rishikesh
+:Rishikesh rdf:type :Destination ;
+    :suitableFor :Solo, :Friends, :Family ;
+    :hasActivity :RiverRafting, :YogaRetreat, :Camping ;
+    :hasAttraction "Laxman Jhula, Triveni Ghat, Beatles Ashram" ;
+    :hasHotel :AnandaRishikesh, :AlohaRishikesh ;
+    :hasBookingOption "https://www.makemytrip.com/flights" ;
+  :hasLocationMap "https://www.google.com/maps/place/Rishikesh" ;
+    :hasGoogleReview "The yoga capital of the world with thrilling rafting." .
+
+:AnandaRishikesh rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 30000 .
+
+:AlohaRishikesh rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 20000 .
+
+# 9. Udaipur
+:Udaipur rdf:type :Destination ;
+    :suitableFor :Couple, :Family, :SeniorCitizen ;
+    :hasActivity :Photography, :PalaceTour ;
+    :hasAttraction "Lake Pichola, City Palace, Sajjangarh Fort" ;
+    :hasHotel :OberoiUdaivilas, :TajLakePalace ;
+    :hasBookingOption "https://www.makemytrip.com/flights" ;
+    :hasLocationMap "https://www.google.com/maps/place/Udaipur" ;
+    :hasGoogleReview "The city of lakes with royal grandeur." .
+
+:OberoiUdaivilas rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 35000 .
+
+:TajLakePalace rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 30000 .
+
+# 10. Shimla
+:Shimla rdf:type :Destination ;
+    :suitableFor :Family, :Couple, :SeniorCitizen ;
+    :hasActivity :Trekking, :Photography ;
+    :hasAttraction "The Ridge, Mall Road, Jakhu Temple" ;
+    :hasHotel :WildflowerHall, :RadissonShimla ;
+    :hasBookingOption "https://www.makemytrip.com/flights" ;
+     :hasLocationMap "https://www.google.com/maps/place/Shimla" ;
+    :hasGoogleReview "A charming hill station with colonial vibes." .
+
+:WildflowerHall rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 28000 .
+
+:RadissonShimla rdf:type :HotelBooking ;
+    :includesBreakfast true ;
+    :amount 20000 .
